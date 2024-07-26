@@ -24,9 +24,9 @@ class ScooterApp {
       return user
     }
 
-    loginUser(username, password) {
+   static loginUser(username, password) {
       const user = this.registeredUsers[username]
-        if(!username || password !== user.password) {
+        if(!user || password !== user.password) {
           throw new Error("Username or password is incorrect")
         }
         user.login(password)
