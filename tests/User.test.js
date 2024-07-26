@@ -1,18 +1,27 @@
 const User = require('../src/User')
+const {describe, it, test, expect} = require((`@jest/globals`))
 
-const user = new User('Joe Bloggs', 'test123', 21)
+describe("Test User login() method", () => {
 
-// User tests here
-describe('User property tests', () => {
-  // test username
-  test('username should be a string', () => {
-    expect(typeof user.username).toBe('string')
+  it("logs the user in if the password is correct", () => {
+    const user = new User("Hannah", "Getin234", 31)
+    user.login("Getin234")
+    expect(user.password).toBe("Getin234")
   })
-  // test password
-
-  // test age
+  it("throws error if password is incorrect", () => {
+    const user = new User("Stefan", "Getin234", 32)
+    expect( () => {
+      user.login("Getin235")
+    }).toThrow("incorrect password")  
+  })
 })
 
-// test login
 
-// test logout
+describe("Test User logout() method", () => {
+
+  it("logs user out", () => {
+    const user = new User("Evie", "ca7", "11")
+    user.logout()
+    expect(user.loggedIn).toBe(false)
+  })
+})
